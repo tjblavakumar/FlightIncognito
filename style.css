@@ -1,0 +1,125 @@
+/* Aptos Font */
+/* Aptos is a modern Microsoft font, fallback to similar fonts if not available */
+
+/* Apply Aptos Bold font globally */
+html, body, [class*="css"] {
+    font-family: 'Aptos', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+}
+
+/* Specific element overrides */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Aptos', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif !important;
+    font-weight: 700 !important;
+}
+
+.stMarkdown, .stText, p, span, div, label, input, button, select, textarea {
+    font-family: 'Aptos', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+}
+
+/* Streamlit specific elements */
+.stButton button {
+    font-family: 'Aptos', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+}
+
+.stTextInput input, .stNumberInput input, .stSelectbox select, .stDateInput input {
+    font-family: 'Aptos', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+}
+
+.stRadio label, .stCheckbox label {
+    font-family: 'Aptos', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+}
+
+/* Sidebar - Force visibility and keep static (no collapse) */
+section[data-testid="stSidebar"] {
+    font-family: 'Aptos', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    min-width: 21rem !important;
+    max-width: 21rem !important;
+}
+
+section[data-testid="stSidebar"] > div {
+    display: block !important;
+    visibility: visible !important;
+}
+
+/* Completely remove collapse button and prevent any interaction */
+section[data-testid="stSidebar"] button[kind="header"],
+section[data-testid="stSidebar"] [data-testid="collapsedControl"],
+section[data-testid="stSidebar"] button[data-testid="collapsedControl"],
+section[data-testid="stSidebar"] [class*="collapsedControl"],
+section[data-testid="stSidebar"] button[aria-label*="collapse"],
+section[data-testid="stSidebar"] button[aria-label*="Collapse"],
+section[data-testid="stSidebar"] svg[data-testid*="Collapse"],
+section[data-testid="stSidebar"] > div > button:first-child {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    position: absolute !important;
+    z-index: -9999 !important;
+}
+
+/* Block all pointer events on the top-left corner of sidebar */
+section[data-testid="stSidebar"]::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    pointer-events: none !important;
+    z-index: 9999;
+}
+
+/* Keep sidebar navigation visible */
+[data-testid="stSidebarNav"] {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Tabs */
+.stTabs [data-baseweb="tab-list"] button {
+    font-family: 'Aptos', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+}
+
+/* Code blocks */
+code, pre {
+    font-family: 'Consolas', 'Courier New', Courier, monospace !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+}
+
+/* Adjust padding since we removed the top nav bar */
+.block-container {
+    padding-top: 1rem !important;
+}
+
+/* Make all text bold except sidebar controls */
+body * {
+    font-weight: 700 !important;
+}
+
+/* Hide only main menu and footer */
+#MainMenu {
+    visibility: hidden;
+}
+
+footer {
+    visibility: hidden;
+}
