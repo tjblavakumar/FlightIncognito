@@ -46,6 +46,28 @@ st.markdown("""
             margin-left: 0 !important;
             transform: none !important;
         }
+        
+        /* Hide ALL tooltips globally */
+        [data-baseweb="tooltip"],
+        [role="tooltip"],
+        div[class*="Tooltip"] {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+        }
+        
+        /* Specifically target the collapse button area */
+        section[data-testid="stSidebar"] > div:first-child {
+            padding-top: 0 !important;
+        }
+        
+        section[data-testid="stSidebar"] > div:first-child > button {
+            display: none !important;
+            visibility: hidden !important;
+            width: 0 !important;
+            height: 0 !important;
+            overflow: hidden !important;
+        }
     </style>
 """, unsafe_allow_html=True)
 
@@ -874,52 +896,6 @@ with st.sidebar:
     st.title("✈️ Flight Incognito")
     st.markdown("---")
     
-    # Search History Section
-    st.subheader("📚 Search History")
-    
-    total_searches = db.get_total_searches()
-    st.caption(f"Total searches: {total_searches}")
-    
-    # Recent searches
-    if total_searches > 0:
-        recent_searches = db.get_recent_searches(limit=5)
-        
-        st.markdown("**Recent Searches:**")
-        for search in recent_searches:
-            search_date = datetime.fromisoformat(search['search_timestamp']).strftime('%m/%d %H:%M')
-            route = f"{search['origin']} → {search['destination']}"
-            
-            col_a, col_b = st.columns([3, 1])
-            with col_a:
-                if st.button(
-                    f"{route}",
-                    key=f"load_{search['id']}",
-                    help=f"Searched on {search_date}",
-                    use_container_width=True
-                ):
-                    st.session_state.load_search = search
-                    st.rerun()
-            with col_b:
-                if st.button("🗑️", key=f"del_{search['id']}", help="Delete"):
-                    db.delete_search(search['id'])
-                    st.rerun()
-        
-        # Popular routes
-        st.markdown("**Popular Routes:**")
-        popular = db.get_popular_routes(limit=3)
-        for route in popular:
-            st.caption(f"✈️ {route['origin']} → {route['destination']} ({route['search_count']}x)")
-        
-        # Clear history button
-        if st.button("🗑️ Clear All History", use_container_width=True):
-            count = db.clear_all_history()
-            st.success(f"Cleared {count} searches")
-            st.rerun()
-    else:
-        st.info("No search history yet")
-    
-    st.markdown("---")
-    
     st.subheader("About")
     st.markdown("""
     **Why Incognito?**
@@ -946,10 +922,6 @@ with st.sidebar:
     - 📱 Hopper
     - ✈️ CheapOair
     """)
-    
-    st.markdown("---")
-    st.caption(f"System: {platform.system()}")
-    st.markdown("🔗 [GitHub](https://github.com/yourusername/flight-incognito)")
 
 # Main header with SVG banner
 components.html("""
@@ -1004,8 +976,8 @@ if loaded_search:
     # Clear after loading
     st.session_state.load_search = None
 
-# Create tabs for better organization - merged Flight Details and Passengers
-tab1, tab2 = st.tabs(["✈️ Flight Details & Passengers", "🌐 Sites & Browser"])
+# Create tabs for better organization
+tab1, tab2, tab3 = st.tabs(["✈️ Flight Details & Passengers", "🌐 Sites & Browser", "📚 Search History"])
 
 with tab1:
     col1, col2 = st.columns(2)
@@ -1222,6 +1194,131 @@ with tab2:
         st.success(f"✅ {len(selected_sites)} site(s) selected")
     else:
         st.warning("⚠️ Please select at least one site")
+
+with tab3:
+    st.markdown("#### Search History")
+    
+    # Get all searches
+    total_searches = db.get_total_searches()
+    
+    if total_searches == 0:
+        st.info("📭 No search history yet. Start by creating your first flight search!")
+    else:
+        # Summary stats at the top
+        col_stat1, col_stat2, col_stat3 = st.columns(3)
+        
+        with col_stat1:
+            st.metric("Total Searches", total_searches)
+        
+        with col_stat2:
+            popular = db.get_popular_routes(limit=1)
+            if popular:
+                most_popular = f"{popular[0]['origin']} → {popular[0]['destination']}"
+                st.metric("Most Popular Route", most_popular)
+            else:
+                st.metric("Most Popular Route", "N/A")
+        
+        with col_stat3:
+            recent = db.get_recent_searches(limit=1)
+            if recent:
+                last_search_time = datetime.fromisoformat(recent[0]['search_timestamp'])
+                time_diff = datetime.now() - last_search_time
+                if time_diff.days > 0:
+                    last_search_str = f"{time_diff.days} day(s) ago"
+                elif time_diff.seconds // 3600 > 0:
+                    last_search_str = f"{time_diff.seconds // 3600} hour(s) ago"
+                else:
+                    last_search_str = f"{time_diff.seconds // 60} min(s) ago"
+                st.metric("Last Search", last_search_str)
+            else:
+                st.metric("Last Search", "N/A")
+        
+        st.markdown("---")
+        
+        # Get all searches for grouping
+        all_searches = db.get_recent_searches(limit=1000)  # Get all searches
+        
+        # Group searches by date
+        now = datetime.now()
+        today_searches = []
+        yesterday_searches = []
+        this_week_searches = []
+        older_searches = []
+        
+        for search in all_searches:
+            search_time = datetime.fromisoformat(search['search_timestamp'])
+            days_diff = (now - search_time).days
+            
+            if days_diff == 0:
+                today_searches.append(search)
+            elif days_diff == 1:
+                yesterday_searches.append(search)
+            elif days_diff <= 7:
+                this_week_searches.append(search)
+            else:
+                older_searches.append(search)
+        
+        # Display grouped searches
+        def display_search_group(title, searches, emoji):
+            if searches:
+                st.markdown(f"### {emoji} {title} ({len(searches)})")
+                
+                for search in searches:
+                    search_time = datetime.fromisoformat(search['search_timestamp'])
+                    
+                    # Create a card for each search
+                    with st.container():
+                        col1, col2, col3 = st.columns([3, 2, 1])
+                        
+                        with col1:
+                            route = f"**{search['origin']} → {search['destination']}**"
+                            st.markdown(route)
+                            
+                            # Date range
+                            depart = date.fromisoformat(search['depart_date']).strftime('%b %d')
+                            if search['return_date']:
+                                return_d = date.fromisoformat(search['return_date']).strftime('%b %d, %Y')
+                                date_range = f"📅 {depart} - {return_d}"
+                            else:
+                                date_range = f"📅 {depart} (One Way)"
+                            st.caption(date_range)
+                        
+                        with col2:
+                            # Passengers and cabin
+                            passengers = f"👥 {search['adults']} adult(s)"
+                            if search['children'] > 0:
+                                passengers += f", {search['children']} child(ren)"
+                            if search['infants'] > 0:
+                                passengers += f", {search['infants']} infant(s)"
+                            st.caption(passengers)
+                            st.caption(f"💺 {search['cabin']}")
+                        
+                        with col3:
+                            # Action buttons
+                            if st.button("📥 Load", key=f"load_hist_{search['id']}", use_container_width=True):
+                                st.session_state.load_search = search
+                                st.rerun()
+                            
+                            if st.button("🗑️ Delete", key=f"del_hist_{search['id']}", use_container_width=True, type="secondary"):
+                                db.delete_search(search['id'])
+                                st.rerun()
+                        
+                        st.markdown("---")
+        
+        # Display each group
+        display_search_group("Today", today_searches, "📍")
+        display_search_group("Yesterday", yesterday_searches, "📆")
+        display_search_group("This Week", this_week_searches, "📅")
+        display_search_group("Older", older_searches, "📂")
+        
+        # Clear all history button at the bottom
+        st.markdown("---")
+        col_clear1, col_clear2, col_clear3 = st.columns([1, 1, 1])
+        with col_clear2:
+            if st.button("🗑️ Clear All History", use_container_width=True, type="secondary"):
+                count = db.clear_all_history()
+                st.success(f"✅ Cleared {count} searches")
+                st.rerun()
 
 st.markdown("---")
 

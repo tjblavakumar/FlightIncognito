@@ -12,6 +12,11 @@ A production-ready local web app that automates opening multiple flight search s
 - **Selective Site Search**: Choose which sites to search with checkboxes (Select All, Deselect All, Top 4 quick buttons)
 - **Multi-Browser Support**: Chrome, Firefox, Edge, and Brave with incognito/private mode
 - **Search History**: Automatically saves searches to local SQLite database for quick reuse
+  - Organized by date: Today, Yesterday, This Week, Older
+  - Summary statistics: total searches, most popular route, last search time
+  - One-click load previous searches
+  - Individual delete or clear all history
+  - Dedicated tab for easy access
 - **Popular Routes**: Track your most frequently searched routes
 - **One-Click Load**: Click any saved search to instantly populate all fields
 - **URL Preview in Browser**: Generate and open a beautiful HTML preview of all search URLs in a new browser window
@@ -19,8 +24,8 @@ A production-ready local web app that automates opening multiple flight search s
 - **Cross-Platform**: Works on Windows, macOS, and Linux
 - **Modern UI**: 
   - Custom SVG banner with gradient design
-  - Static left navigation (always visible, no collapse)
-  - Streamlined 2-tab interface for faster workflow
+  - Clean sidebar with About and Supported Sites
+  - 3-tab interface: Flight Details, Sites & Browser, Search History
   - Bold Aptos font throughout
   - Clean, professional design
 
@@ -102,7 +107,14 @@ A production-ready local web app that automates opening multiple flight search s
    - Use quick buttons: "Select All", "Deselect All", or "Top 4"
    - Choose your preferred browser (Chrome, Firefox, Edge, Brave)
 
-3. **Launch Search**:
+3. **View Search History** (Tab 3):
+   - See all your past searches organized by date (Today, Yesterday, This Week, Older)
+   - View summary stats: Total searches, most popular route, last search time
+   - Load any previous search with one click
+   - Delete individual searches or clear all history
+   - Each search shows: route, dates, passengers, cabin class
+
+4. **Launch Search**:
    - Click "🚀 Open X Site(s) in [Browser]" button
    - Each selected site opens in a fresh incognito/private window
    - Search is automatically saved to history
@@ -140,18 +152,29 @@ flight-incognito/
 
 ## ✨ Recent Updates
 
-### Airport Autocomplete Feature (Latest)
+### Search History Redesign (Latest)
+- **Dedicated History Tab**: Moved search history from sidebar to its own tab
+- **Date Grouping**: Organized searches by Today, Yesterday, This Week, and Older
+- **Summary Statistics**: View total searches, most popular route, and last search time
+- **Enhanced Cards**: Each search shows route, dates, passengers, cabin class
+- **Quick Actions**: Load or delete individual searches with one click
+- **Cleaner Sidebar**: Removed history from sidebar for better focus
+
+### Airport Autocomplete Feature
 - **Smart airport selection**: Added searchable dropdown with 100+ airports
 - **Multi-country support**: US (50 airports), Canada (15 airports), India (30+ airports)
 - **Flexible search**: Find airports by code, city name, or airport name
 - **Better UX**: No more typos or memorizing airport codes
 - **airports.json**: Local database of airport information for fast lookups
 
+### URL Format Fixes
+- **Kayak**: Fixed passenger parameter format to match current API structure
+- **Skyscanner**: Updated to use adultsv2 and childrenv2 parameters with proper formatting
+
 ### UI/UX Improvements
 - **Removed top navigation bar**: Eliminated redundant header to reduce whitespace
 - **Added custom SVG banner**: Professional gradient banner with airplane graphics and app branding
-- **Static sidebar**: Left navigation now stays visible at all times (no collapse button)
-- **Merged tabs**: Combined "Flight Details" and "Passengers" into one tab for faster workflow (reduced from 3 tabs to 2)
+- **Static sidebar**: Left navigation stays visible at all times (no collapse button)
 - **Enhanced preview feature**: "Preview URLs" now opens a beautiful HTML page in a new browser window with:
   - Gradient design matching app theme
   - Interactive copy buttons for each URL

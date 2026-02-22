@@ -61,7 +61,9 @@ section[data-testid="stSidebar"] [class*="collapsedControl"],
 section[data-testid="stSidebar"] button[aria-label*="collapse"],
 section[data-testid="stSidebar"] button[aria-label*="Collapse"],
 section[data-testid="stSidebar"] svg[data-testid*="Collapse"],
-section[data-testid="stSidebar"] > div > button:first-child {
+section[data-testid="stSidebar"] > div > button:first-child,
+section[data-testid="stSidebar"] button[title],
+section[data-testid="stSidebar"] [role="button"][title] {
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
@@ -72,14 +74,24 @@ section[data-testid="stSidebar"] > div > button:first-child {
     z-index: -9999 !important;
 }
 
+/* Hide all tooltips in sidebar */
+section[data-testid="stSidebar"] [data-baseweb="tooltip"],
+section[data-testid="stSidebar"] [role="tooltip"],
+section[data-testid="stSidebar"] .stTooltipIcon {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
+
 /* Block all pointer events on the top-left corner of sidebar */
 section[data-testid="stSidebar"]::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
-    width: 50px;
-    height: 50px;
+    width: 80px;
+    height: 80px;
+    background: transparent;
     pointer-events: none !important;
     z-index: 9999;
 }
@@ -122,4 +134,18 @@ body * {
 
 footer {
     visibility: hidden;
+}
+
+/* Hide any stray tooltips that might appear */
+[data-baseweb="tooltip"]:has-text("keyboard_double"),
+[role="tooltip"]:has-text("keyboard_double") {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+/* Additional aggressive hiding for collapse button area */
+section[data-testid="stSidebar"] > div:first-child > button:first-child {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
 }
