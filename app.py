@@ -383,9 +383,11 @@ def generate_skyscanner_url(
     
     if trip_type == "Round Trip" and return_date:
         return_str = return_date.strftime("%y%m%d")
-        url = f"https://www.skyscanner.com/transport/flights/{origin}/{destination}/{depart_str}/{return_str}/"
+        url = f"https://www.skyscanner.com/transport/flights/{origin.lower()}/{destination.lower()}/{depart_str}/{return_str}/"
+        rtn = "1"
     else:
-        url = f"https://www.skyscanner.com/transport/flights/{origin}/{destination}/{depart_str}/"
+        url = f"https://www.skyscanner.com/transport/flights/{origin.lower()}/{destination.lower()}/{depart_str}/"
+        rtn = "0"
     
     # Map cabin class to Skyscanner format
     cabin_map = {
@@ -396,8 +398,27 @@ def generate_skyscanner_url(
     }
     cabin_code = cabin_map.get(cabin, "economy")
     
-    # Add passengers, cabin, and currency (USD)
-    url += f"?adults={adults}&children={children}&infants={infants}&cabinclass={cabin_code}&currency=USD&locale=en-US"
+    # Build query parameters
+    params = []
+    params.append(f"adultsv2={adults}")
+    params.append(f"cabinclass={cabin_code}")
+    
+    # Add children with ages (format: age1|age2|age3, URL encoded as %7C)
+    if children > 0:
+        # Default child ages to 10 for simplicity
+        child_ages = "%7C".join(["10"] * children)
+        params.append(f"childrenv2={child_ages}")
+    
+    params.append("ref=home")
+    params.append(f"rtn={rtn}")
+    params.append("preferdirects=false")
+    params.append("outboundaltsenabled=false")
+    params.append("inboundaltsenabled=false")
+    
+    # Note: Skyscanner doesn't have a standard parameter for infants in the URL
+    # They are typically handled during the search results
+    
+    url += "?" + "&".join(params)
     
     return url
 
