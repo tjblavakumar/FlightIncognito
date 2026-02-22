@@ -158,19 +158,34 @@ def generate_kayak_url(
     """Generate Kayak search URL"""
     depart_str = depart_date.strftime("%Y-%m-%d")
     
+    # Build passenger string
+    passenger_str = f"{adults}adults" if adults > 0 else ""
+    
+    # Add children with ages (Kayak format: children-age1-age2-age3)
+    if children > 0:
+        # Default child ages to 11 for simplicity (can be customized)
+        child_ages = "-".join(["11"] * children)
+        if passenger_str:
+            passenger_str += f"/children-{child_ages}"
+        else:
+            passenger_str = f"children-{child_ages}"
+    
+    # Build URL based on trip type
     if trip_type == "Round Trip" and return_date:
         return_str = return_date.strftime("%Y-%m-%d")
         url = f"https://www.kayak.com/flights/{origin}-{destination}/{depart_str}/{return_str}"
     else:
         url = f"https://www.kayak.com/flights/{origin}-{destination}/{depart_str}"
     
-    # Add passengers and sorting
-    url += f"?sort=bestflight_a&fs=adults={adults}"
+    # Add passenger string to URL path
+    if passenger_str:
+        url += f"/{passenger_str}"
     
-    if children > 0:
-        url += f";children={children}"
-    if infants > 0:
-        url += f";infants={infants}"
+    # Add query parameters
+    url += "?sort=bestflight_a"
+    
+    # Note: Kayak doesn't have a standard parameter for infants in lap
+    # They are typically handled during booking
     
     return url
 
