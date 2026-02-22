@@ -14,6 +14,7 @@ import time
 import tempfile
 import os
 import webbrowser
+import json
 import database as db
 
 # Page config
@@ -70,6 +71,48 @@ st.markdown("""
 
 # Initialize database
 db.init_database()
+
+# Load airport data
+@st.cache_data
+def load_airports():
+    """Load airport data from JSON file"""
+    try:
+        with open("airports.json", "r", encoding="utf-8") as f:
+            airports = json.load(f)
+        return airports
+    except FileNotFoundError:
+        st.error("airports.json file not found")
+        return []
+
+def format_airport_option(airport: dict) -> str:
+    """Format airport for display in dropdown"""
+    return f"{airport['code']} - {airport['city']}, {airport['country']} ({airport['name']})"
+
+def get_airport_code_from_selection(selection: str) -> str:
+    """Extract airport code from formatted selection"""
+    if selection and " - " in selection:
+        return selection.split(" - ")[0].strip()
+    return selection
+
+def search_airports(query: str, airports: list) -> list:
+    """Search airports by code, city, or name"""
+    if not query:
+        return airports
+    
+    query = query.lower()
+    results = []
+    
+    for airport in airports:
+        if (query in airport['code'].lower() or 
+            query in airport['city'].lower() or 
+            query in airport['name'].lower()):
+            results.append(airport)
+    
+    return results
+
+# Load airports
+airports_data = load_airports()
+airport_options = [format_airport_option(airport) for airport in airports_data]
 
 # Initialize session state for form values
 if 'load_search' not in st.session_state:
@@ -940,20 +983,45 @@ with tab1:
             horizontal=True
         )
         
-        # Origin and destination
-        origin = st.text_input(
-            "From (Airport Code)",
-            value=loaded_search['origin'] if loaded_search else "SFO",
-            help="Enter IATA code, e.g. SFO, LAX, JFK",
-            max_chars=3
-        )
+        # Origin with autocomplete
+        st.markdown("**From (Airport)**")
         
-        destination = st.text_input(
-            "To (Airport Code)",
-            value=loaded_search['destination'] if loaded_search else "LAX",
-            help="Enter IATA code, e.g. SFO, LAX, JFK",
-            max_chars=3
+        # Find default origin in airport options
+        default_origin_code = loaded_search['origin'] if loaded_search else "SFO"
+        default_origin_idx = 0
+        for idx, option in enumerate(airport_options):
+            if option.startswith(default_origin_code + " - "):
+                default_origin_idx = idx
+                break
+        
+        origin_selection = st.selectbox(
+            "From (Airport)",
+            options=airport_options,
+            index=default_origin_idx,
+            help="Search by airport code, city name, or airport name",
+            label_visibility="collapsed"
         )
+        origin = get_airport_code_from_selection(origin_selection)
+        
+        # Destination with autocomplete
+        st.markdown("**To (Airport)**")
+        
+        # Find default destination in airport options
+        default_dest_code = loaded_search['destination'] if loaded_search else "LAX"
+        default_dest_idx = 0
+        for idx, option in enumerate(airport_options):
+            if option.startswith(default_dest_code + " - "):
+                default_dest_idx = idx
+                break
+        
+        destination_selection = st.selectbox(
+            "To (Airport)",
+            options=airport_options,
+            index=default_dest_idx,
+            help="Search by airport code, city name, or airport name",
+            label_visibility="collapsed"
+        )
+        destination = get_airport_code_from_selection(destination_selection)
         
         # Cabin class
         cabin_options = ["Economy", "Premium Economy", "Business", "First"]
@@ -1159,11 +1227,8 @@ with status_container:
     
     if not origin or not destination:
         is_valid = False
-        error_msg = "❌ Please enter both origin and destination airport codes"
-    elif len(origin.strip()) != 3 or len(destination.strip()) != 3:
-        is_valid = False
-        error_msg = "❌ Airport codes must be exactly 3 letters (e.g., SFO, LAX, JFK)"
-    elif origin.upper().strip() == destination.upper().strip():
+        error_msg = "❌ Please select both origin and destination airports"
+    elif origin == destination:
         is_valid = False
         error_msg = "❌ Origin and destination must be different"
     elif trip_type == "Round Trip" and return_date <= depart_date:

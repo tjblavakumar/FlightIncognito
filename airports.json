@@ -1,0 +1,578 @@
+[
+  {
+    "code": "ATL",
+    "name": "Hartsfield-Jackson Atlanta International Airport",
+    "city": "Atlanta",
+    "country": "USA"
+  },
+  {
+    "code": "LAX",
+    "name": "Los Angeles International Airport",
+    "city": "Los Angeles",
+    "country": "USA"
+  },
+  {
+    "code": "ORD",
+    "name": "O'Hare International Airport",
+    "city": "Chicago",
+    "country": "USA"
+  },
+  {
+    "code": "DFW",
+    "name": "Dallas/Fort Worth International Airport",
+    "city": "Dallas",
+    "country": "USA"
+  },
+  {
+    "code": "DEN",
+    "name": "Denver International Airport",
+    "city": "Denver",
+    "country": "USA"
+  },
+  {
+    "code": "JFK",
+    "name": "John F. Kennedy International Airport",
+    "city": "New York",
+    "country": "USA"
+  },
+  {
+    "code": "SFO",
+    "name": "San Francisco International Airport",
+    "city": "San Francisco",
+    "country": "USA"
+  },
+  {
+    "code": "SEA",
+    "name": "Seattle-Tacoma International Airport",
+    "city": "Seattle",
+    "country": "USA"
+  },
+  {
+    "code": "LAS",
+    "name": "Harry Reid International Airport",
+    "city": "Las Vegas",
+    "country": "USA"
+  },
+  {
+    "code": "MCO",
+    "name": "Orlando International Airport",
+    "city": "Orlando",
+    "country": "USA"
+  },
+  {
+    "code": "EWR",
+    "name": "Newark Liberty International Airport",
+    "city": "Newark",
+    "country": "USA"
+  },
+  {
+    "code": "CLT",
+    "name": "Charlotte Douglas International Airport",
+    "city": "Charlotte",
+    "country": "USA"
+  },
+  {
+    "code": "PHX",
+    "name": "Phoenix Sky Harbor International Airport",
+    "city": "Phoenix",
+    "country": "USA"
+  },
+  {
+    "code": "IAH",
+    "name": "George Bush Intercontinental Airport",
+    "city": "Houston",
+    "country": "USA"
+  },
+  {
+    "code": "MIA",
+    "name": "Miami International Airport",
+    "city": "Miami",
+    "country": "USA"
+  },
+  {
+    "code": "BOS",
+    "name": "Logan International Airport",
+    "city": "Boston",
+    "country": "USA"
+  },
+  {
+    "code": "MSP",
+    "name": "Minneapolis-St Paul International Airport",
+    "city": "Minneapolis",
+    "country": "USA"
+  },
+  {
+    "code": "DTW",
+    "name": "Detroit Metropolitan Wayne County Airport",
+    "city": "Detroit",
+    "country": "USA"
+  },
+  {
+    "code": "PHL",
+    "name": "Philadelphia International Airport",
+    "city": "Philadelphia",
+    "country": "USA"
+  },
+  {
+    "code": "LGA",
+    "name": "LaGuardia Airport",
+    "city": "New York",
+    "country": "USA"
+  },
+  {
+    "code": "FLL",
+    "name": "Fort Lauderdale-Hollywood International Airport",
+    "city": "Fort Lauderdale",
+    "country": "USA"
+  },
+  {
+    "code": "BWI",
+    "name": "Baltimore/Washington International Airport",
+    "city": "Baltimore",
+    "country": "USA"
+  },
+  {
+    "code": "DCA",
+    "name": "Ronald Reagan Washington National Airport",
+    "city": "Washington",
+    "country": "USA"
+  },
+  {
+    "code": "IAD",
+    "name": "Washington Dulles International Airport",
+    "city": "Washington",
+    "country": "USA"
+  },
+  {
+    "code": "SAN",
+    "name": "San Diego International Airport",
+    "city": "San Diego",
+    "country": "USA"
+  },
+  {
+    "code": "TPA",
+    "name": "Tampa International Airport",
+    "city": "Tampa",
+    "country": "USA"
+  },
+  {
+    "code": "PDX",
+    "name": "Portland International Airport",
+    "city": "Portland",
+    "country": "USA"
+  },
+  {
+    "code": "HNL",
+    "name": "Daniel K. Inouye International Airport",
+    "city": "Honolulu",
+    "country": "USA"
+  },
+  {
+    "code": "SLC",
+    "name": "Salt Lake City International Airport",
+    "city": "Salt Lake City",
+    "country": "USA"
+  },
+  {
+    "code": "AUS",
+    "name": "Austin-Bergstrom International Airport",
+    "city": "Austin",
+    "country": "USA"
+  },
+  {
+    "code": "BNA",
+    "name": "Nashville International Airport",
+    "city": "Nashville",
+    "country": "USA"
+  },
+  {
+    "code": "MDW",
+    "name": "Chicago Midway International Airport",
+    "city": "Chicago",
+    "country": "USA"
+  },
+  {
+    "code": "RDU",
+    "name": "Raleigh-Durham International Airport",
+    "city": "Raleigh/Durham",
+    "country": "USA"
+  },
+  {
+    "code": "STL",
+    "name": "St. Louis Lambert International Airport",
+    "city": "St. Louis",
+    "country": "USA"
+  },
+  {
+    "code": "SJC",
+    "name": "Norman Y. Mineta San Jose International Airport",
+    "city": "San Jose",
+    "country": "USA"
+  },
+  {
+    "code": "OAK",
+    "name": "Oakland International Airport",
+    "city": "Oakland",
+    "country": "USA"
+  },
+  {
+    "code": "SAT",
+    "name": "San Antonio International Airport",
+    "city": "San Antonio",
+    "country": "USA"
+  },
+  {
+    "code": "RSW",
+    "name": "Southwest Florida International Airport",
+    "city": "Fort Myers",
+    "country": "USA"
+  },
+  {
+    "code": "PIT",
+    "name": "Pittsburgh International Airport",
+    "city": "Pittsburgh",
+    "country": "USA"
+  },
+  {
+    "code": "CVG",
+    "name": "Cincinnati/Northern Kentucky International Airport",
+    "city": "Cincinnati",
+    "country": "USA"
+  },
+  {
+    "code": "CMH",
+    "name": "John Glenn Columbus International Airport",
+    "city": "Columbus",
+    "country": "USA"
+  },
+  {
+    "code": "IND",
+    "name": "Indianapolis International Airport",
+    "city": "Indianapolis",
+    "country": "USA"
+  },
+  {
+    "code": "CLE",
+    "name": "Cleveland Hopkins International Airport",
+    "city": "Cleveland",
+    "country": "USA"
+  },
+  {
+    "code": "MCI",
+    "name": "Kansas City International Airport",
+    "city": "Kansas City",
+    "country": "USA"
+  },
+  {
+    "code": "SMF",
+    "name": "Sacramento International Airport",
+    "city": "Sacramento",
+    "country": "USA"
+  },
+  {
+    "code": "MSY",
+    "name": "Louis Armstrong New Orleans International Airport",
+    "city": "New Orleans",
+    "country": "USA"
+  },
+  {
+    "code": "SNA",
+    "name": "John Wayne Airport",
+    "city": "Orange County",
+    "country": "USA"
+  },
+  {
+    "code": "BUR",
+    "name": "Hollywood Burbank Airport",
+    "city": "Burbank",
+    "country": "USA"
+  },
+  {
+    "code": "ONT",
+    "name": "Ontario International Airport",
+    "city": "Ontario",
+    "country": "USA"
+  },
+  {
+    "code": "ANC",
+    "name": "Ted Stevens Anchorage International Airport",
+    "city": "Anchorage",
+    "country": "USA"
+  },
+  {
+    "code": "YYZ",
+    "name": "Toronto Pearson International Airport",
+    "city": "Toronto",
+    "country": "Canada"
+  },
+  {
+    "code": "YVR",
+    "name": "Vancouver International Airport",
+    "city": "Vancouver",
+    "country": "Canada"
+  },
+  {
+    "code": "YUL",
+    "name": "Montréal-Pierre Elliott Trudeau International Airport",
+    "city": "Montreal",
+    "country": "Canada"
+  },
+  {
+    "code": "YYC",
+    "name": "Calgary International Airport",
+    "city": "Calgary",
+    "country": "Canada"
+  },
+  {
+    "code": "YEG",
+    "name": "Edmonton International Airport",
+    "city": "Edmonton",
+    "country": "Canada"
+  },
+  {
+    "code": "YOW",
+    "name": "Ottawa Macdonald-Cartier International Airport",
+    "city": "Ottawa",
+    "country": "Canada"
+  },
+  {
+    "code": "YWG",
+    "name": "Winnipeg James Armstrong Richardson International Airport",
+    "city": "Winnipeg",
+    "country": "Canada"
+  },
+  {
+    "code": "YHZ",
+    "name": "Halifax Stanfield International Airport",
+    "city": "Halifax",
+    "country": "Canada"
+  },
+  {
+    "code": "YQB",
+    "name": "Québec City Jean Lesage International Airport",
+    "city": "Quebec City",
+    "country": "Canada"
+  },
+  {
+    "code": "YYJ",
+    "name": "Victoria International Airport",
+    "city": "Victoria",
+    "country": "Canada"
+  },
+  {
+    "code": "YXE",
+    "name": "Saskatoon John G. Diefenbaker International Airport",
+    "city": "Saskatoon",
+    "country": "Canada"
+  },
+  {
+    "code": "YQR",
+    "name": "Regina International Airport",
+    "city": "Regina",
+    "country": "Canada"
+  },
+  {
+    "code": "YYT",
+    "name": "St. John's International Airport",
+    "city": "St. John's",
+    "country": "Canada"
+  },
+  {
+    "code": "YKF",
+    "name": "Waterloo International Airport",
+    "city": "Kitchener/Waterloo",
+    "country": "Canada"
+  },
+  {
+    "code": "YHM",
+    "name": "John C. Munro Hamilton International Airport",
+    "city": "Hamilton",
+    "country": "Canada"
+  },
+  {
+    "code": "DEL",
+    "name": "Indira Gandhi International Airport",
+    "city": "Delhi",
+    "country": "India"
+  },
+  {
+    "code": "BOM",
+    "name": "Chhatrapati Shivaji Maharaj International Airport",
+    "city": "Mumbai",
+    "country": "India"
+  },
+  {
+    "code": "BLR",
+    "name": "Kempegowda International Airport",
+    "city": "Bangalore",
+    "country": "India"
+  },
+  {
+    "code": "MAA",
+    "name": "Chennai International Airport",
+    "city": "Chennai",
+    "country": "India"
+  },
+  {
+    "code": "HYD",
+    "name": "Rajiv Gandhi International Airport",
+    "city": "Hyderabad",
+    "country": "India"
+  },
+  {
+    "code": "CCU",
+    "name": "Netaji Subhas Chandra Bose International Airport",
+    "city": "Kolkata",
+    "country": "India"
+  },
+  {
+    "code": "GOI",
+    "name": "Goa International Airport",
+    "city": "Goa",
+    "country": "India"
+  },
+  {
+    "code": "COK",
+    "name": "Cochin International Airport",
+    "city": "Kochi",
+    "country": "India"
+  },
+  {
+    "code": "AMD",
+    "name": "Sardar Vallabhbhai Patel International Airport",
+    "city": "Ahmedabad",
+    "country": "India"
+  },
+  {
+    "code": "PNQ",
+    "name": "Pune Airport",
+    "city": "Pune",
+    "country": "India"
+  },
+  {
+    "code": "JAI",
+    "name": "Jaipur International Airport",
+    "city": "Jaipur",
+    "country": "India"
+  },
+  {
+    "code": "TRV",
+    "name": "Trivandrum International Airport",
+    "city": "Thiruvananthapuram",
+    "country": "India"
+  },
+  {
+    "code": "LKO",
+    "name": "Chaudhary Charan Singh International Airport",
+    "city": "Lucknow",
+    "country": "India"
+  },
+  {
+    "code": "IXC",
+    "name": "Chandigarh International Airport",
+    "city": "Chandigarh",
+    "country": "India"
+  },
+  {
+    "code": "GAU",
+    "name": "Lokpriya Gopinath Bordoloi International Airport",
+    "city": "Guwahati",
+    "country": "India"
+  },
+  {
+    "code": "BBI",
+    "name": "Biju Patnaik International Airport",
+    "city": "Bhubaneswar",
+    "country": "India"
+  },
+  {
+    "code": "VNS",
+    "name": "Lal Bahadur Shastri International Airport",
+    "city": "Varanasi",
+    "country": "India"
+  },
+  {
+    "code": "IXB",
+    "name": "Bagdogra Airport",
+    "city": "Bagdogra",
+    "country": "India"
+  },
+  {
+    "code": "NAG",
+    "name": "Dr. Babasaheb Ambedkar International Airport",
+    "city": "Nagpur",
+    "country": "India"
+  },
+  {
+    "code": "IXR",
+    "name": "Birsa Munda Airport",
+    "city": "Ranchi",
+    "country": "India"
+  },
+  {
+    "code": "IXZ",
+    "name": "Veer Savarkar International Airport",
+    "city": "Port Blair",
+    "country": "India"
+  },
+  {
+    "code": "SXR",
+    "name": "Sheikh ul-Alam International Airport",
+    "city": "Srinagar",
+    "country": "India"
+  },
+  {
+    "code": "IXJ",
+    "name": "Jammu Airport",
+    "city": "Jammu",
+    "country": "India"
+  },
+  {
+    "code": "IXL",
+    "name": "Kushok Bakula Rimpochee Airport",
+    "city": "Leh",
+    "country": "India"
+  },
+  {
+    "code": "ATQ",
+    "name": "Sri Guru Ram Dass Jee International Airport",
+    "city": "Amritsar",
+    "country": "India"
+  },
+  {
+    "code": "IXD",
+    "name": "Allahabad Airport",
+    "city": "Allahabad",
+    "country": "India"
+  },
+  {
+    "code": "VGA",
+    "name": "Vijayawada Airport",
+    "city": "Vijayawada",
+    "country": "India"
+  },
+  {
+    "code": "IDR",
+    "name": "Devi Ahilya Bai Holkar Airport",
+    "city": "Indore",
+    "country": "India"
+  },
+  {
+    "code": "RPR",
+    "name": "Swami Vivekananda Airport",
+    "city": "Raipur",
+    "country": "India"
+  },
+  {
+    "code": "BDQ",
+    "name": "Vadodara Airport",
+    "city": "Vadodara",
+    "country": "India"
+  },
+  {
+    "code": "STV",
+    "name": "Surat Airport",
+    "city": "Surat",
+    "country": "India"
+  }
+]

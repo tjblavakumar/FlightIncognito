@@ -5,6 +5,10 @@ A production-ready local web app that automates opening multiple flight search s
 ## 🎯 Core Features
 
 - **8 Flight Search Sites**: Google Flights, Kayak, Momondo, Skyscanner, Expedia, Priceline, Hopper, CheapOair
+- **Smart Airport Search**: Autocomplete dropdown with 100+ airports from US, Canada, and India
+  - Search by airport code (SFO), city name (San Francisco), or airport name
+  - No more typos or memorizing codes
+  - Formatted display: "SFO - San Francisco, USA (San Francisco International Airport)"
 - **Selective Site Search**: Choose which sites to search with checkboxes (Select All, Deselect All, Top 4 quick buttons)
 - **Multi-Browser Support**: Chrome, Firefox, Edge, and Brave with incognito/private mode
 - **Search History**: Automatically saves searches to local SQLite database for quick reuse
@@ -85,7 +89,10 @@ A production-ready local web app that automates opening multiple flight search s
 
 1. **Enter Flight Details & Passengers** (Tab 1):
    - Select trip type (Round Trip or One Way)
-   - Enter origin and destination airport codes (e.g., SFO, LAX, JFK)
+   - **Select origin and destination airports** using the smart autocomplete dropdown:
+     - Type airport code (e.g., "SFO"), city name (e.g., "San Francisco"), or airport name
+     - Choose from 100+ airports across US, Canada, and India
+     - No need to memorize airport codes!
    - Choose departure and return dates
    - Select cabin class (Economy, Premium Economy, Business, First)
    - Enter number of adults, children, and infants (all in one convenient tab)
@@ -120,6 +127,7 @@ A production-ready local web app that automates opening multiple flight search s
 flight-incognito/
 ├── app.py                  # Main Streamlit application with SVG banner
 ├── database.py             # SQLite database functions for search history
+├── airports.json           # Airport data (100+ airports from US, Canada, India)
 ├── style.css               # Custom CSS styling (Aptos font, static sidebar)
 ├── requirements.txt        # Python dependencies
 ├── README.md              # This file
@@ -131,6 +139,13 @@ flight-incognito/
 ```
 
 ## ✨ Recent Updates
+
+### Airport Autocomplete Feature (Latest)
+- **Smart airport selection**: Added searchable dropdown with 100+ airports
+- **Multi-country support**: US (50 airports), Canada (15 airports), India (30+ airports)
+- **Flexible search**: Find airports by code, city name, or airport name
+- **Better UX**: No more typos or memorizing airport codes
+- **airports.json**: Local database of airport information for fast lookups
 
 ### UI/UX Improvements
 - **Removed top navigation bar**: Eliminated redundant header to reduce whitespace
@@ -144,10 +159,12 @@ flight-incognito/
   - Professional card-based layout
 
 ### Technical Improvements
+- Added JSON-based airport database for fast autocomplete
 - Added `streamlit.components.v1` for better HTML rendering
 - Implemented temporary HTML file generation for URL previews
 - Enhanced CSS for sidebar stability and visibility
 - Improved passenger input layout with 4-column design
+- Simplified validation logic with dropdown selections
 
 ## 🔧 Configuration
 
@@ -210,9 +227,19 @@ The app automatically detects browser installations in standard locations:
 
 **Solutions**:
 - Use "Preview URLs" to verify URL format
-- Check that airport codes are valid 3-letter IATA codes
-- Ensure dates are in the future
+- Ensure airports are selected from the dropdown (not manually typed)
+- Check that dates are in the future
 - Some sites (Hopper) have limited web support - primarily mobile apps
+
+### Airport Not Found
+
+**Issue**: Can't find a specific airport in the dropdown
+
+**Solutions**:
+- Try searching by city name instead of airport code
+- Try searching by airport name (e.g., "International")
+- The database includes 100+ major airports from US, Canada, and India
+- For airports not in the list, you can request additions via GitHub issues
 
 ## 📝 Dependencies
 
