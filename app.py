@@ -47,15 +47,6 @@ st.markdown("""
             transform: none !important;
         }
         
-        /* Hide ALL tooltips globally */
-        [data-baseweb="tooltip"],
-        [role="tooltip"],
-        div[class*="Tooltip"] {
-            display: none !important;
-            visibility: hidden !important;
-            opacity: 0 !important;
-        }
-        
         /* Specifically target the collapse button area */
         section[data-testid="stSidebar"] > div:first-child {
             padding-top: 0 !important;
@@ -993,7 +984,7 @@ with tab1:
         
         # Origin with autocomplete
         st.markdown("**From (Airport)**")
-        
+
         # Find default origin in airport options
         default_origin_code = loaded_search['origin'] if loaded_search else "SFO"
         default_origin_idx = 0
@@ -1001,7 +992,7 @@ with tab1:
             if option.startswith(default_origin_code + " - "):
                 default_origin_idx = idx
                 break
-        
+
         origin_selection = st.selectbox(
             "From (Airport)",
             options=airport_options,
@@ -1010,10 +1001,10 @@ with tab1:
             label_visibility="collapsed"
         )
         origin = get_airport_code_from_selection(origin_selection)
-        
+
         # Destination with autocomplete
         st.markdown("**To (Airport)**")
-        
+
         # Find default destination in airport options
         default_dest_code = loaded_search['destination'] if loaded_search else "LAX"
         default_dest_idx = 0
@@ -1021,7 +1012,7 @@ with tab1:
             if option.startswith(default_dest_code + " - "):
                 default_dest_idx = idx
                 break
-        
+
         destination_selection = st.selectbox(
             "To (Airport)",
             options=airport_options,

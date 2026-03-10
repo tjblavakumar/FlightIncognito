@@ -33,6 +33,35 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700 !important;
 }
 
+/* Ensure selectbox dropdown/search text stays readable */
+[data-testid="stSelectbox"] [role="combobox"],
+[data-testid="stSelectbox"] [role="combobox"] * {
+    background-color: #ffffff !important;
+    color: #111111 !important;
+    fill: #111111 !important;
+    -webkit-text-fill-color: #111111 !important;
+    opacity: 1 !important;
+    text-shadow: none !important;
+}
+
+[role="listbox"],
+[role="listbox"] * ,
+[role="option"],
+[role="option"] * {
+    background-color: #ffffff !important;
+    color: #111111 !important;
+    fill: #111111 !important;
+    -webkit-text-fill-color: #111111 !important;
+    opacity: 1 !important;
+    text-shadow: none !important;
+}
+
+[role="option"]:hover,
+[role="listbox"] [aria-selected="true"] {
+    background-color: #e8f0fe !important;
+    color: #111111 !important;
+}
+
 .stRadio label, .stCheckbox label {
     font-family: 'Aptos', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif !important;
     font-size: 16px !important;
